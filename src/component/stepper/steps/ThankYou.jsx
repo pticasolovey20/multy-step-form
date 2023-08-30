@@ -6,7 +6,7 @@ const ThankYou = () => {
 	return (
 		<div
 			className={classNames(
-				"md:h-full flex flex-col",
+				"h-full flex flex-col",
 				"justify-center gap-4",
 				"px-6 md:px-10 md:pt-8 py-16 md:py-4"
 			)}

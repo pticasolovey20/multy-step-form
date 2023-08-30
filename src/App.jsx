@@ -41,26 +41,19 @@ const App = () => {
 		<Layout>
 			<div
 				className={classNames(
-					"h-full md:h-[600px] w-full md:w-[850px]",
-					"relative flex flex-col md:flex-row	md:gap-4 md:p-4",
+					"h-full md:h-[80%] lg:h-[600px] w-full md:w-[90%] lg:w-[850px]",
+					"relative flex flex-col md:flex-row md:gap-4 p-0 md:p-4",
 					"rounded-2xl md:bg-neutral-white"
 				)}
 			>
 				<SideBar activeStep={activeStep} />
 				<div
 					className={classNames(
-						"relative md:static top-[-90px]",
-						activeStep < steps.length && !finish && "flex-1",
-						"w-full md:w-2/3",
-						"p-4 md:p-0"
+						"relative md:static top-[-50px] xs:top-[-95px] sm:top-[-150px]",
+						"w-full md:w-2/3 flex-1 p-2 md:p-0"
 					)}
 				>
-					<div
-						className={classNames(
-							"w-full rounded-xl bg-neutral-white",
-							activeStep < steps.length && "h-full"
-						)}
-					>
+					<div className="w-full h-full rounded-xl bg-neutral-white">
 						<Routes>
 							<Route
 								element={<Outlet context={{ finish, handlePrevStep, handleNextStep, handleConfirm }} />}
@@ -75,7 +68,7 @@ const App = () => {
 				{!finish && (
 					<div
 						className={classNames(
-							"flex md:hidden p-4 bg-neutral-white",
+							"flex md:hidden p-2 md:p-4 bg-neutral-white",
 							activeStep > 0 ? "justify-between" : "justify-end"
 						)}
 					>

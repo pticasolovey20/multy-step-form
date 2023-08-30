@@ -5,7 +5,7 @@ import DesctopBG from "./DesctopBG";
 import MobileBG from "./MobileBG";
 
 const SideBar = ({ activeStep }) => {
-	const { matches: SVG } = useMediaQuery("min-width", 881);
+	const { matches: SVG } = useMediaQuery("min-width", 768);
 
 	return (
 		<div className="relative w-full md:w-1/3 rounded-xl">
