@@ -1,9 +1,17 @@
+import { classNames } from "../../../utils";
+
 import ThankIcon from "../../icons/ThankIcon";
 
 const ThankYou = () => {
 	return (
-		<div className="h-full flex items-center justify-center gap-4 px-10 py-4">
-			<div className="flex flex-col items-center gap-6">
+		<div
+			className={classNames(
+				"md:h-full flex flex-col",
+				"justify-center gap-4",
+				"px-6 md:px-10 md:pt-8 py-16 md:py-4"
+			)}
+		>
+			<div className="flex flex-col items-center gap-8 md:gap-6">
 				<ThankIcon />
 				<h1 className="text-4xl font-bold text-primary-marine-blue">Thank You!</h1>
 				<p className="text-center text-neutral-cool-gray">
