@@ -7,7 +7,7 @@ const Stepper = ({ activeStep }) => {
 			<div
 				className={classNames(
 					"flex flex-row md:flex-col gap-6 md:gap-8 p-6 md:p-8",
-					"absolute top-0 md:left-0 z-10"
+					"absolute top-2 md:top-0 md:left-0 z-10"
 				)}
 			>
 				{steps.map(({ label, description }, index) => (
@@ -15,7 +15,7 @@ const Stepper = ({ activeStep }) => {
 						<div
 							className={classNames(
 								"rounded-full font-medium border border-white",
-								"w-8 xs:w-9 sm:w-12 md:w-9 h-8 xs:h-9 sm:h-12 md:h-9",
+								"w-9 xs:w-12 md:w-9 h-9 xs:h-12 md:h-9",
 								"flex items-center justify-center",
 								activeStep === index && "text-black bg-primary-light-blue"
 							)}
@@ -26,6 +26,7 @@ const Stepper = ({ activeStep }) => {
 							<span className="text-[12px] font-normal text-neutral-light-gray leading-none">
 								{description}
 							</span>
+
 							<h1 className="font-medium leading-none">{label}</h1>
 						</div>
 					</div>

@@ -1,13 +1,8 @@
-import { useOutletContext } from "react-router-dom";
-import { classNames } from "../../../utils";
+import { classNames } from "../../utils";
 
-import Button from "../../button";
+import Button from "../button";
 
-const SelectPlan = () => {
-	const { handlePrevStep, handleNextStep, handleSubmit } = useOutletContext();
-
-	const onSubmit = async () => handleNextStep();
-
+const Form = (children, { mainTitle, secondaryDescription, handlePrevStep, handleSubmit, onSubmit, styles }) => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -21,11 +16,11 @@ const SelectPlan = () => {
 			)}
 		>
 			<div className="flex flex-col gap-3 md:gap-1">
-				<h1 className="text-3xl font-semibold text-primary-marine-blue">Select your plan</h1>
-				<span className="text-neutral-cool-gray">You have the option of monthly or yearly billing.</span>
+				<h1 className="text-3xl font-semibold text-primary-marine-blue">{mainTitle}</h1>
+				<span className="text-neutral-cool-gray">{secondaryDescription}</span>
 			</div>
 
-			<div className="flex-1"></div>
+			<div className={classNames("flex flex-col gap-4 md:gap-6", styles)}>{children}</div>
 
 			<div className="hidden md:flex justify-between">
 				<Button
@@ -44,4 +39,4 @@ const SelectPlan = () => {
 	);
 };
 
-export default SelectPlan;
+export default Form;
