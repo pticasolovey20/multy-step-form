@@ -13,9 +13,10 @@ const SelectPlan = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className={classNames(
 				"flex flex-col lg:h-full",
-				"gap-6 md:gap-8 rounded-xl",
+				"gap-6 md:gap-4 rounded-xl",
 				"bg-neutral-white overflow-hidden",
 				"px-6 md:px-8 lg:px-10",
+				"md:!pl-2 lg:!pl-6",
 				"py-10 md:py-4 lg:py-8",
 				"pb-8 md:!pb-4"
 			)}
