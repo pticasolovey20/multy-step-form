@@ -29,7 +29,7 @@ const Summary = () => {
 				<span className="text-neutral-cool-gray">Double-check everything looks OK before confirming.</span>
 			</div>
 
-			<div className="flex flex-col gap-4 md:gap-6"></div>
+			<div className="flex-1 flex flex-col gap-4 md:gap-6"></div>
 
 			<div className="w-full flex justify-between">
 				<Button

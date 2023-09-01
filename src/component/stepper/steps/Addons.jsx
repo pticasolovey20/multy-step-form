@@ -26,7 +26,7 @@ const Addons = () => {
 				<span className="text-neutral-cool-gray">Add-ons help enhance your gaming experience.</span>
 			</div>
 
-			<div className="flex flex-col gap-4 md:gap-6"></div>
+			<div className="flex-1 flex flex-col gap-4 md:gap-6"></div>
 
 			<div className="w-full flex justify-between">
 				<Button

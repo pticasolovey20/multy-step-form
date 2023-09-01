@@ -1,6 +1,6 @@
 const ProIcon = () => {
 	return (
-		<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+		<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 40 40">
 			<g fill="none" fillRule="evenodd">
 				<circle cx="20" cy="20" r="20" fill="#483EFF" />
 				<path

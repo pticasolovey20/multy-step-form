@@ -3,6 +3,10 @@ import SelectPlan from "../component/stepper/steps/SelectPlan";
 import Addons from "../component/stepper/steps/Addons";
 import Summary from "../component/stepper/steps/Summary";
 
+import ArcadeIcon from "../component/icons/ArcadeIcon";
+import AdvancedIcon from "../component/icons/AdvancedIcon";
+import ProIcon from "../component/icons/ProIcon";
+
 export const steps = [
 	{
 		label: "Your Info",
@@ -28,4 +32,10 @@ export const steps = [
 		description: "step 4",
 		component: <Summary />,
 	},
+];
+
+export const plans = [
+	{ icon: <ArcadeIcon />, name: "Arcade", price: 9 },
+	{ icon: <AdvancedIcon />, name: "Advanced", price: 12 },
+	{ icon: <ProIcon />, name: "Pro", price: 15 },
 ];

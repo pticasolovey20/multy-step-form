@@ -13,12 +13,12 @@ const PersonalInfo = () => {
 		<form
 			onSubmit={handleSubmit(onSubmit)}
 			className={classNames(
-				"h-full flex flex-col justify-evenly",
-				"gap-6 md:gap-4 rounded-xl",
+				"md:h-full flex flex-col",
+				"gap-4 rounded-xl",
 				"bg-neutral-white overflow-hidden",
 				"px-6 md:px-8 lg:px-10",
 				"md:!pl-3 lg:!pl-6",
-				"py-10 md:py-4 lg:py-8",
+				"py-10 md:py-2 lg:py-8",
 				"pb-8 md:!pb-4"
 			)}
 		>
@@ -29,7 +29,7 @@ const PersonalInfo = () => {
 				</span>
 			</div>
 
-			<div className="flex flex-col gap-4 md:gap-6">
+			<div className="flex-1 flex flex-col gap-2">
 				<Input
 					label="Name"
 					id="name"

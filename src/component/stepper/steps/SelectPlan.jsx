@@ -1,7 +1,10 @@
 import { useOutletContext } from "react-router-dom";
 import { classNames } from "../../../utils";
+import { plans } from "../../../constants";
 
 import Button from "../../button";
+import PlanCard from "../../plan-card";
+import Switch from "../../switch";
 
 const SelectPlan = () => {
 	const { handlePrevStep, handleNextStep, handleSubmit } = useOutletContext();
@@ -12,10 +15,10 @@ const SelectPlan = () => {
 		<form
 			onSubmit={handleSubmit(onSubmit)}
 			className={classNames(
-				"h-full flex flex-col justify-evenly",
-				"gap-6 md:gap-4 rounded-xl",
+				"h-full flex flex-col",
+				"gap-8 md:gap-6 rounded-xl",
 				"bg-neutral-white overflow-hidden",
-				"px-6 md:px-8 lg:px-10",
+				"px-6 md:px-8 lg:px-20",
 				"md:!pl-3 lg:!pl-6",
 				"py-10 md:py-4 lg:py-8",
 				"pb-8 md:!pb-4"
@@ -26,7 +29,16 @@ const SelectPlan = () => {
 				<span className="text-neutral-cool-gray">You have the option of monthly or yearly billing.</span>
 			</div>
 
-			<div className="flex flex-col gap-4 md:gap-6"></div>
+			<div className="flex-1 flex flex-col gap-4 md:gap-8">
+				<div className="w-full flex flex-col md:flex-row gap-4">
+					{plans.map((plan, index) => (
+						<PlanCard key={index} {...plan} />
+					))}
+				</div>
+				<div className="w-full flex items-center justify-center">
+					<Switch />
+				</div>
+			</div>
 
 			<div className="w-full flex justify-between">
 				<Button
