@@ -62,7 +62,8 @@ const App = () => {
 					className={classNames(
 						"relative md:static",
 						"w-full md:w-[65%]",
-						"-top-[20%] xs:-top-[23%] p-4 sm:p-8 md:p-0"
+						"-top-[20%] xs:-top-[25%] sm:-top-[20%]",
+						"p-4 sm:p-8 md:p-0"
 					)}
 				>
 					<Routes>
@@ -71,7 +72,6 @@ const App = () => {
 								<Outlet
 									context={{
 										finish,
-										activeStep,
 										handlePrevStep,
 										handleNextStep,
 										handleConfirm,

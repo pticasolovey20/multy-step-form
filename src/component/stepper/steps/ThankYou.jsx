@@ -12,7 +12,7 @@ const ThankYou = () => {
 				"px-6 md:px-8 lg:px-10",
 				"md:!pl-3 lg:!pl-6",
 				"py-16 md:py-4 md:!pb-4 lg:py-8",
-				"mb-[140px] sm:mb-[150px] md:mb-0"
+				"mb-[120px] sm:mb-[150px] md:mb-0"
 			)}
 		>
 			<div className="flex flex-col items-center gap-4 md:gap-6">
