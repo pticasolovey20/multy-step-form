@@ -5,7 +5,7 @@ const Button = ({ label, type = "submit", onClick, styles }) => {
 		<button
 			type={type}
 			onClick={onClick}
-			className={classNames("sm:font-medium", "px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-lg duration-300", styles)}
+			className={classNames("sm:font-medium", "px-4 sm:px-8 py-2 sm:py-3 rounded-lg duration-300", styles)}
 		>
 			{label}
 		</button>

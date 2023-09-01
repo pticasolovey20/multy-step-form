@@ -4,7 +4,6 @@ import { Outlet, Route, Routes, useNavigate } from "react-router-dom";
 
 import Layout from "./component/layout";
 import SideBar from "./component/side-bar";
-import Button from "./component/button";
 
 import { classNames } from "./utils";
 import { steps } from "./constants";
@@ -52,7 +51,7 @@ const App = () => {
 				className={classNames(
 					"h-full md:h-[80%] lg:h-[600px]",
 					"w-full md:w-[90%] lg:w-[850px]",
-					"flex flex-col md:flex-row",
+					"flex flex-col md:flex-row justify-between",
 					"md:gap-4 p-0 md:p-4 rounded-2xl",
 					"md:bg-neutral-white shadow-primary-pastel-blue shadow-[0px_10px_20px]"
 				)}
@@ -61,8 +60,9 @@ const App = () => {
 
 				<div
 					className={classNames(
-						"relative md:static w-full sm:[60%] md:w-[65%] h-full p-4 sm:p-8 md:p-0",
-						"top-[-45px] xs:top-[-95px] sm:top-[-180px]"
+						"relative md:static",
+						"w-full md:w-[65%]",
+						"-top-[20%] xs:-top-[23%] p-4 sm:p-8 md:p-0"
 					)}
 				>
 					<Routes>
@@ -71,6 +71,7 @@ const App = () => {
 								<Outlet
 									context={{
 										finish,
+										activeStep,
 										handlePrevStep,
 										handleNextStep,
 										handleConfirm,
@@ -87,32 +88,6 @@ const App = () => {
 						</Route>
 					</Routes>
 				</div>
-
-				{!finish && (
-					<div className="relative px-4 sm:px-8 pb-4 md:hidden">
-						<div
-							className={classNames(
-								"flex justify-end md:hidden",
-								"p-4 md:p-6 rounded-xl bg-neutral-white",
-								activeStep > 0 ? "justify-between" : "justify-end"
-							)}
-						>
-							{activeStep > 0 && (
-								<Button
-									onClick={handlePrevStep}
-									label="Go Back"
-									styles="text-neutral-cool-gray hover:text-primary-marine-blue"
-								/>
-							)}
-
-							<Button
-								onClick={activeStep < steps.length - 1 ? handleNextStep : handleConfirm}
-								label={activeStep < steps.length - 1 ? "Next Step" : "Confirm"}
-								styles="text-white bg-primary-marine-blue hover:bg-primary-marine-blue/80"
-							/>
-						</div>
-					</div>
-				)}
 			</div>
 		</Layout>
 	);

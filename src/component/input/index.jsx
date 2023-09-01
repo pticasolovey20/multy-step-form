@@ -2,9 +2,9 @@ import { classNames } from "../../utils";
 
 const Input = ({ label, id, type = "text", placeholder, autoComplete = "off", register, errors }) => {
 	return (
-		<div className="flex flex-col gap-1 md:gap-2">
-			<div className="flex justify-between leading-none">
-				<label htmlFor={id} className="text-primary-marine-blue font-medium">
+		<div className="flex flex-col gap-2">
+			<div className="flex items-center justify-between text-sm md:text-base leading-none">
+				<label htmlFor={id} className="text-primary-marine-blue font-medium sm:font-semibold">
 					{label}
 				</label>
 

@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
 				"flex md:items-center md:justify-center"
 			)}
 		>
-			<main className="w-full flex md:justify-center relative">{children}</main>
+			<main className="w-full flex md:justify-center">{children}</main>
 		</section>
 	);
 };
