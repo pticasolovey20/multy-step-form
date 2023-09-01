@@ -62,7 +62,7 @@ const App = () => {
 					className={classNames(
 						"relative md:static",
 						"w-full md:w-[65%]",
-						"-top-[20%] xs:-top-[25%] sm:-top-[20%]",
+						"bottom-[20%] xs:bottom-[25%] sm:bottom-[20%]",
 						"p-4 sm:p-8 md:p-0"
 					)}
 				>
