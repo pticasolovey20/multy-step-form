@@ -2,9 +2,9 @@ import { useOutletContext } from "react-router-dom";
 import { classNames } from "../../../utils";
 import { plans } from "../../../constants";
 
-import Button from "../../button";
 import PlanCard from "../../plan-card";
 import Switch from "../../switch";
+import Button from "../../button";
 
 const SelectPlan = () => {
 	const { handlePrevStep, handleNextStep, handleSubmit } = useOutletContext();
@@ -31,7 +31,7 @@ const SelectPlan = () => {
 					<span className="text-neutral-cool-gray">You have the option of monthly or yearly billing.</span>
 				</div>
 
-				<div className="flex-1 flex flex-col gap-4 md:gap-6">
+				<div className="flex-1 flex flex-col justify-center gap-4 md:gap-6">
 					<div className="w-full flex flex-col md:flex-row gap-4">
 						{plans.map((plan, index) => (
 							<PlanCard key={index} {...plan} />
