@@ -52,7 +52,7 @@ const App = () => {
 					"h-full md:h-[80%] lg:h-[600px]",
 					"w-full md:w-[90%] lg:w-[1000px]",
 					"flex flex-col md:flex-row",
-					"md:gap-8 p-0 md:p-4 rounded-2xl",
+					"md:gap-6 lg:gap-8 p-0 md:p-4 rounded-2xl",
 					"md:bg-neutral-white shadow-primary-pastel-blue shadow-[0px_10px_20px]"
 				)}
 			>
@@ -62,7 +62,7 @@ const App = () => {
 					className={classNames(
 						"relative md:static",
 						"w-full md:w-2/3",
-						"-top-[10%] sm:-top-[20%]",
+						"-top-[10%] sm:-top-[20%] ",
 						"p-4 sm:p-8 md:p-0"
 					)}
 				>
