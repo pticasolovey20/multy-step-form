@@ -1,6 +1,6 @@
 import { classNames } from "../../utils";
 
-import Checkbox from "../checkbox";
+import Checkbox from "../ui/checkbox";
 
 const AddonItem = ({ name, description, price }) => {
 	return (

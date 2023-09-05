@@ -1,11 +1,13 @@
+import { useState } from "react";
+import { classNames } from "../../../utils";
 import * as SwitchComponent from "@radix-ui/react-switch";
 
-import { classNames } from "../../utils";
+const Switch = ({ value, onChange, setFlag }) => {
+	const [checked, setChecked] = useState(value);
 
-const Switch = () => (
-	<div className="flex gap-4 items-center text-primary-marine-blue font-medium leading-none">
-		<label className="">Mothly</label>
+	return (
 		<SwitchComponent.Root
+			checked={checked}
 			className={classNames(
 				"w-12 h-6 rounded-full relative outline-none",
 				"data-[state=checked]:bg-primary-marine-blue",
@@ -13,6 +15,11 @@ const Switch = () => (
 			)}
 		>
 			<SwitchComponent.Thumb
+				onClick={() => {
+					onChange(!checked);
+					setChecked(!checked);
+					setFlag(!checked);
+				}}
 				className={classNames(
 					"block w-4 h-4",
 					"bg-neutral-white rounded-full",
@@ -21,8 +28,7 @@ const Switch = () => (
 				)}
 			/>
 		</SwitchComponent.Root>
-		<label>Yearly</label>
-	</div>
-);
+	);
+};
 
 export default Switch;

@@ -8,7 +8,16 @@ import SideBar from "./component/side-bar";
 import { classNames } from "./utils";
 import { steps } from "./constants";
 
+const INITIAL_DATA = {
+	email: "",
+	name: "",
+	phone: "",
+	plan: "",
+	mode: "Monthly",
+};
+
 const App = () => {
+	const [data, setData] = useState(INITIAL_DATA);
 	const [activeStep, setActiveStep] = useState(0);
 	const [finish, setFinish] = useState(false);
 
@@ -16,6 +25,7 @@ const App = () => {
 
 	const {
 		reset,
+		control,
 		register,
 		handleSubmit,
 		formState: { errors },
@@ -28,8 +38,10 @@ const App = () => {
 		setActiveStep((prev) => prev - 1);
 	};
 
-	const handleNextStep = () => {
+	const handleNextStep = (propData) => {
 		if (activeStep === steps.length) return;
+
+		setData({ ...data, ...propData });
 
 		navigate(steps[activeStep + 1]?.href);
 		setActiveStep((prev) => prev + 1);
@@ -49,10 +61,10 @@ const App = () => {
 		<Layout>
 			<div
 				className={classNames(
-					"h-full md:h-[80%] lg:h-[600px]",
-					"w-full md:w-[90%] lg:w-[1000px]",
-					"flex flex-col md:flex-row",
-					"md:gap-6 lg:gap-8 p-0 md:p-4 rounded-2xl",
+					"h-full md:h-[50%] lg:h-[550px]",
+					"w-full md:w-[90%] lg:w-[850px]",
+					"flex flex-col md:flex-row md:gap-6 lg:gap-8",
+					"p-0 md:p-4 rounded-2xl",
 					"md:bg-neutral-white shadow-primary-pastel-blue shadow-[0px_10px_20px]"
 				)}
 			>
@@ -62,7 +74,7 @@ const App = () => {
 					className={classNames(
 						"relative md:static",
 						"w-full md:w-2/3",
-						"-top-[10%] sm:-top-[20%] ",
+						"-top-[11%] sm:-top-[20%] ",
 						"p-4 sm:p-8 md:p-0"
 					)}
 				>
@@ -75,9 +87,11 @@ const App = () => {
 										handlePrevStep,
 										handleNextStep,
 										handleConfirm,
+										control,
 										register,
 										handleSubmit,
 										errors,
+										data,
 									}}
 								/>
 							}

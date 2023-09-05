@@ -1,36 +1,32 @@
 import { useOutletContext } from "react-router-dom";
 import { classNames } from "../../../utils";
 
-import Button from "../../button";
-import Input from "../../input";
+import Button from "../../ui/button";
+import Input from "../../ui/input";
+import Headline from "../../headline";
 
 const PersonalInfo = () => {
 	const { handleNextStep, handleSubmit, register, errors } = useOutletContext();
 
-	const onSubmit = async () => handleNextStep();
+	const onSubmit = async (data) => handleNextStep(data);
 
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmit)}
-			className="h-full flex flex-col gap-6 sm:gap-4 md:gap-2 justify-between"
-		>
+		<form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col md:justify-center gap-4 md:gap-2">
 			<div
 				className={classNames(
-					"h-full flex flex-col",
-					"gap-2 rounded-xl",
-					"bg-neutral-white overflow-hidden",
-					"px-6 md:px-8 lg:px-16",
-					"py-10 md:py-4 md:!pt-0 lg:!pt-8 lg:py-8"
+					"h-full flex flex-col gap-6 rounded-xl",
+					"md:justify-center lg:justify-between",
+					"px-6 md:pl-6 md:pr-8 lg:pl-12 lg:pr-16",
+					"py-8 md:py-4 lg:py-8",
+					"bg-neutral-white overflow-hidden"
 				)}
 			>
-				<div className="flex flex-col gap-3 md:gap-1">
-					<h1 className="text-3xl font-semibold text-primary-marine-blue">Personal info</h1>
-					<span className="text-neutral-cool-gray">
-						Please provide your name, email address, and phone number.
-					</span>
-				</div>
+				<Headline
+					mainText="Personal info"
+					secondaryText="Please provide your name, email address, and phone number."
+				/>
 
-				<div className="flex-1 flex flex-col justify-center gap-2">
+				<div className="flex flex-col gap-4">
 					<Input
 						label="Name"
 						id="name"
@@ -63,7 +59,7 @@ const PersonalInfo = () => {
 				className={classNames(
 					"w-full flex justify-end",
 					"rounded-xl bg-neutral-white",
-					"px-6 md:px-8 lg:px-16 py-4"
+					"px-6 py-4 md:pl-6 md:pr-8 lg:pl-12 lg:pr-16"
 				)}
 			>
 				<Button

@@ -1,7 +1,7 @@
-import { classNames } from "../../utils";
+import { classNames } from "../../../utils";
 
 import * as CheckboxComponent from "@radix-ui/react-checkbox";
-import CheckmarkIcon from "../icons/CheckmarkIcon";
+import CheckmarkIcon from "../../icons/CheckmarkIcon";
 
 const Checkbox = ({ id }) => {
 	return (

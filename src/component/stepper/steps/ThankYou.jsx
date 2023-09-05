@@ -6,13 +6,11 @@ const ThankYou = () => {
 	return (
 		<div
 			className={classNames(
-				"md:h-full flex flex-col justify-evenly",
-				"gap-6 md:gap-4 rounded-xl",
-				"bg-neutral-white overflow-hidden",
-				"px-6 md:px-8 lg:px-10",
-				"md:!pl-3 lg:!pl-6",
-				"py-16 md:py-4 md:!pb-4 lg:py-8",
-				"mb-[120px] sm:mb-[150px] md:mb-0"
+				"h-full flex flex-col gap-6 rounded-xl",
+				"md:justify-center",
+				"px-6 md:pl-6 md:pr-8 lg:pl-12 lg:pr-16",
+				"py-8 md:py-4 lg:py-8",
+				"bg-neutral-white overflow-hidden"
 			)}
 		>
 			<div className="flex flex-col items-center gap-4 md:gap-6">

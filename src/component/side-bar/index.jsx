@@ -8,7 +8,7 @@ const SideBar = ({ activeStep }) => {
 	const { matches: SVG } = useMediaQuery("min-width", 768);
 
 	return (
-		<div className="relative w-full md:w-1/3 lg:w-[28%] rounded-xl">
+		<div className="relative rounded-xl">
 			{SVG ? <DesctopBG /> : <MobileBG />}
 			<Stepper activeStep={activeStep} />
 		</div>

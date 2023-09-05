@@ -6,7 +6,7 @@ const Stepper = ({ activeStep }) => {
 		<div
 			className={classNames(
 				"w-full flex flex-row md:flex-col",
-				"justify-center gap-6 md:gap-8 p-6 md:p-8",
+				"justify-center gap-6 md:gap-8 p-6",
 				"absolute top-2 md:top-1 md:left-0 z-10"
 			)}
 		>
@@ -14,9 +14,8 @@ const Stepper = ({ activeStep }) => {
 				<div key={index} className="flex gap-4 text-white cursor-pointer select-none">
 					<div
 						className={classNames(
+							"flex w-9 h-9 items-center justify-center",
 							"rounded-full font-medium border border-white",
-							"w-9 xs:w-12 md:w-9 h-9 xs:h-12 md:h-9",
-							"flex items-center justify-center",
 							activeStep === index && "text-black bg-primary-light-blue"
 						)}
 					>
