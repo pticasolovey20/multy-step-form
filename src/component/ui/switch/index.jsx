@@ -8,6 +8,11 @@ const Switch = ({ value, onChange, setFlag }) => {
 	return (
 		<SwitchComponent.Root
 			checked={checked}
+			onClick={() => {
+				onChange(!checked);
+				setChecked(!checked);
+				setFlag(!checked);
+			}}
 			className={classNames(
 				"w-12 h-6 rounded-full relative outline-none",
 				"data-[state=checked]:bg-primary-marine-blue",
@@ -15,11 +20,6 @@ const Switch = ({ value, onChange, setFlag }) => {
 			)}
 		>
 			<SwitchComponent.Thumb
-				onClick={() => {
-					onChange(!checked);
-					setChecked(!checked);
-					setFlag(!checked);
-				}}
 				className={classNames(
 					"block w-4 h-4",
 					"bg-neutral-white rounded-full",
