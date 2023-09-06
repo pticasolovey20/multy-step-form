@@ -1,16 +1,32 @@
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { classNames } from "../../../utils";
+import { addons, steps } from "../../../constants";
 
 import ThankYou from "../steps/ThankYou";
 import Button from "../../ui/button";
 import Headline from "../../headline";
 
 const Summary = () => {
-	const { finish, handlePrevStep, handleConfirm, handleSubmit } = useOutletContext();
+	const [filteredAddons, setFilteredAddons] = useState([]);
+
+	const { finish, handlePrevStep, setActiveStep, handleConfirm, handleSubmit, data } = useOutletContext();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		setFilteredAddons(
+			data?.addons
+				.filter((addon) => Object.values(addon)[0] === true)
+				.map((filteredAddon) => addons.find((addon) => addon.keyCheck === Object.keys(filteredAddon)[0]))
+				.filter((selectedAddon) => selectedAddon !== undefined)
+		);
+	}, [data?.addons]);
 
 	const onSubmit = async () => handleConfirm();
 
 	if (finish) return <ThankYou />;
+
+	const totalPrice = data?.plan?.price + filteredAddons.reduce((acc, addon) => acc + addon.price, 0);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col md:justify-center gap-4 md:gap-2">
@@ -25,7 +41,45 @@ const Summary = () => {
 			>
 				<Headline mainText="Finishing up" secondaryText="Double-check everything looks OK before confirming." />
 
-				<div className="flex flex-col gap-4"></div>
+				<div className="flex flex-col gap-6 !tracking-tighter">
+					<div className="flex flex-col p-4 rounded-xl bg-primary-light-blue/10">
+						<div
+							className={classNames(
+								"flex justify-between items-center pb-4",
+								"border-b border-neutral-light-gray",
+								"font-semibold text-lg text-primary-marine-blue"
+							)}
+						>
+							<div className="flex flex-col justify-center items-start">
+								<span className="">{`${data?.plan?.name} (${
+									data?.period ? "Yearly" : "Monthly"
+								})`}</span>
+								<button
+									onClick={() => {
+										setActiveStep(1);
+										navigate(`/${steps[1]?.href}`);
+									}}
+									className="text-base text-neutral-cool-gray underline font-normal"
+								>
+									Change
+								</button>
+							</div>
+							<span className="text-xl">{`$${data?.plan?.price}/mo`}</span>
+						</div>
+						<div className="flex flex-col gap-4 text-neutral-cool-gray pt-4">
+							{filteredAddons.map(({ name, price }, index) => (
+								<div key={index} className="flex justify-between items-center">
+									<span>{name}</span>
+									<span className="text-primary-marine-blue">{`+$${price}/mo`}</span>
+								</div>
+							))}
+						</div>
+					</div>
+					<div className="flex justify-between items-center p-4 rounded-xl bg-primary-light-blue/10">
+						<span className="text-neutral-cool-gray">{`Total (per month)`}</span>
+						<span className="text-2xl font-semibold text-primary-purplish-blue">{`+$${totalPrice}/mo`}</span>
+					</div>
+				</div>
 			</div>
 
 			<div
@@ -44,7 +98,7 @@ const Summary = () => {
 				<Button
 					type="submit"
 					label="Confirm"
-					styles="text-white bg-primary-marine-blue hover:bg-primary-marine-blue/80"
+					styles="text-white bg-primary-marine-blue hover:bg-primary-purplish-blue"
 				/>
 			</div>
 		</form>

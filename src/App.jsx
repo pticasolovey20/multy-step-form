@@ -12,8 +12,9 @@ const INITIAL_DATA = {
 	email: "",
 	name: "",
 	phone: "",
-	plan: "",
-	mode: "Monthly",
+	plan: null,
+	period: false,
+	addons: [],
 };
 
 const App = () => {
@@ -57,6 +58,12 @@ const App = () => {
 		}, 3000);
 	};
 
+	const discount = {
+		status: true,
+		discountPeriod: 2,
+		message: "2 months free",
+	};
+
 	return (
 		<Layout>
 			<div
@@ -86,12 +93,14 @@ const App = () => {
 										finish,
 										handlePrevStep,
 										handleNextStep,
+										setActiveStep,
 										handleConfirm,
 										control,
 										register,
 										handleSubmit,
 										errors,
 										data,
+										discount,
 									}}
 								/>
 							}

@@ -4,7 +4,7 @@ const Layout = ({ children }) => {
 	return (
 		<section
 			className={classNames(
-				"min-h-screen w-full bg-primary-light-blue",
+				"min-h-screen w-full bg-primary-light-blue/50",
 				"flex md:items-center md:justify-center"
 			)}
 		>

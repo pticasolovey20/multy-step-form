@@ -1,15 +1,26 @@
+import { Controller } from "react-hook-form";
 import { useOutletContext } from "react-router-dom";
 import { classNames } from "../../../utils";
 import { addons } from "../../../constants";
 
-import AddonItem from "../../addon-item";
 import Button from "../../ui/button";
 import Headline from "../../headline";
+import AddonItem from "../../addon-item";
 
 const Addons = () => {
-	const { handlePrevStep, handleNextStep, handleSubmit } = useOutletContext();
+	const { handlePrevStep, handleNextStep, handleSubmit, control } = useOutletContext();
 
-	const onSubmit = async (data) => handleNextStep(data);
+	const onSubmit = async (data) => {
+		const { onlineService, largerStorage, customizableProfile } = data;
+
+		const addons = [
+			{ onlineService: onlineService },
+			{ largerStorage: largerStorage },
+			{ customizableProfile: customizableProfile },
+		];
+
+		handleNextStep({ ...data, ...{ addons: addons } });
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col md:justify-center gap-4 md:gap-2">
@@ -26,7 +37,15 @@ const Addons = () => {
 
 				<div className="flex flex-col gap-3 md:gap-4">
 					{addons.map((addon, index) => (
-						<AddonItem key={index} {...addon} />
+						<Controller
+							key={index}
+							name={addon.keyCheck}
+							defaultValue={false}
+							control={control}
+							render={({ field: { value, onChange } }) => (
+								<AddonItem {...addon} value={value} onChange={onChange} />
+							)}
+						/>
 					))}
 				</div>
 			</div>
