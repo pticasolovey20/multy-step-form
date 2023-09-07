@@ -1,17 +1,13 @@
-import { useState } from "react";
 import { classNames } from "../../../utils";
 import * as SwitchComponent from "@radix-ui/react-switch";
 
-const Switch = ({ value, onChange, setFlag }) => {
-	const [checked, setChecked] = useState(value);
-
+const Switch = ({ value, onChange, setPeriod }) => {
 	return (
 		<SwitchComponent.Root
-			checked={checked}
+			checked={value}
 			onClick={() => {
-				onChange(!checked);
-				setChecked(!checked);
-				setFlag(!checked);
+				onChange(!value);
+				setPeriod(!value);
 			}}
 			className={classNames(
 				"w-12 h-6 rounded-full relative outline-none",

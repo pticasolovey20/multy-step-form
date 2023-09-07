@@ -10,11 +10,10 @@ import Button from "../../ui/button";
 import Headline from "../../headline";
 
 const SelectPlan = () => {
-	const [flag, setFlag] = useState(false);
+	const { handlePrevStep, handleNextStep, handleSubmit, control, data, errors, discount } = useOutletContext();
+	const [period, setPeriod] = useState(data?.period);
 
-	const { handlePrevStep, handleNextStep, control, handleSubmit } = useOutletContext();
-
-	const onSubmit = async (data) => handleNextStep(data?.mode ? { mode: "Yearly" } : { mode: "Mothly" });
+	const onSubmit = async (newData) => handleNextStep(newData);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col md:justify-center gap-4 md:gap-2">
@@ -35,9 +34,26 @@ const SelectPlan = () => {
 				<div className="flex flex-col gap-4 md:pb-16">
 					<div className="w-full flex flex-col md:flex-row gap-2 md:gap-4">
 						{plans.map((plan, index) => (
-							<PlanCard key={index} {...plan} flag={flag} />
+							<Controller
+								key={index}
+								control={control}
+								rules={{ required: "You need to choose a plan" }}
+								name="plan"
+								render={({ field: { value, onChange } }) => (
+									<PlanCard
+										{...plan}
+										value={value}
+										onChange={onChange}
+										period={period}
+										discount={discount}
+									/>
+								)}
+							/>
 						))}
 					</div>
+					{errors.plan && (
+						<span className="font-semibold text-primary-strawberry-red">{errors?.plan?.message}</span>
+					)}
 					<div
 						className={classNames(
 							"w-full flex gap-4 items-center justify-center",
@@ -47,10 +63,10 @@ const SelectPlan = () => {
 						<label>Mothly</label>
 						<Controller
 							control={control}
-							name="mode"
+							name="period"
 							defaultValue={false}
 							render={({ field: { value, onChange } }) => (
-								<Switch setFlag={setFlag} value={value} onChange={onChange} />
+								<Switch value={value} onChange={onChange} setPeriod={setPeriod} />
 							)}
 						/>
 						<label>Yearly</label>

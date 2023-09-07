@@ -12,8 +12,9 @@ const INITIAL_DATA = {
 	email: "",
 	name: "",
 	phone: "",
-	plan: "",
-	mode: "Monthly",
+	plan: null,
+	period: false,
+	addons: [],
 };
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		setError,
 	} = useForm({ mode: "onChange" });
 
 	const handlePrevStep = () => {
@@ -49,12 +51,19 @@ const App = () => {
 
 	const handleConfirm = () => {
 		setFinish(true);
+		reset();
+		setData(INITIAL_DATA);
 		setTimeout(() => {
 			setActiveStep(0);
-			reset();
 			navigate(steps[0]?.href);
 			setFinish(false);
-		}, 3000);
+		}, 1000);
+	};
+
+	const discount = {
+		status: true,
+		discountPeriod: 2,
+		message: "2 months free",
 	};
 
 	return (
@@ -86,12 +95,15 @@ const App = () => {
 										finish,
 										handlePrevStep,
 										handleNextStep,
+										setActiveStep,
 										handleConfirm,
 										control,
 										register,
 										handleSubmit,
 										errors,
+										setError,
 										data,
+										discount,
 									}}
 								/>
 							}
