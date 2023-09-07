@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Controller } from "react-hook-form";
 import { useOutletContext } from "react-router-dom";
 import { classNames } from "../../../utils";
@@ -9,9 +10,10 @@ import Button from "../../ui/button";
 import Headline from "../../headline";
 
 const SelectPlan = () => {
-	const { handlePrevStep, handleNextStep, handleSubmit, control } = useOutletContext();
+	const { handlePrevStep, handleNextStep, handleSubmit, control, data, errors, discount } = useOutletContext();
+	const [period, setPeriod] = useState(data?.period);
 
-	const onSubmit = async (data) => handleNextStep(data);
+	const onSubmit = async (newData) => handleNextStep(newData);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col md:justify-center gap-4 md:gap-2">
@@ -35,13 +37,23 @@ const SelectPlan = () => {
 							<Controller
 								key={index}
 								control={control}
+								rules={{ required: "You need to choose a plan" }}
 								name="plan"
 								render={({ field: { value, onChange } }) => (
-									<PlanCard {...plan} value={value} onChange={onChange} />
+									<PlanCard
+										{...plan}
+										value={value}
+										onChange={onChange}
+										period={period}
+										discount={discount}
+									/>
 								)}
 							/>
 						))}
 					</div>
+					{errors.plan && (
+						<span className="font-semibold text-primary-strawberry-red">{errors?.plan?.message}</span>
+					)}
 					<div
 						className={classNames(
 							"w-full flex gap-4 items-center justify-center",
@@ -53,7 +65,9 @@ const SelectPlan = () => {
 							control={control}
 							name="period"
 							defaultValue={false}
-							render={({ field: { value, onChange } }) => <Switch value={value} onChange={onChange} />}
+							render={({ field: { value, onChange } }) => (
+								<Switch value={value} onChange={onChange} setPeriod={setPeriod} />
+							)}
 						/>
 						<label>Yearly</label>
 					</div>

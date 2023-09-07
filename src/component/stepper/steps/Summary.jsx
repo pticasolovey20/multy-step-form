@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { classNames } from "../../../utils";
+import { calculatePrice, classNames } from "../../../utils";
 import { addons, steps } from "../../../constants";
 
 import ThankYou from "../steps/ThankYou";
@@ -10,8 +10,11 @@ import Headline from "../../headline";
 const Summary = () => {
 	const [filteredAddons, setFilteredAddons] = useState([]);
 
-	const { finish, handlePrevStep, setActiveStep, handleConfirm, handleSubmit, data } = useOutletContext();
+	const { finish, handlePrevStep, setActiveStep, handleConfirm, handleSubmit, data, discount } = useOutletContext();
 	const navigate = useNavigate();
+
+	const coeff = data?.period ? 12 - discount.discountPeriod : 1;
+	const totalPrice = data?.plan?.price * coeff + filteredAddons.reduce((acc, addon) => acc + addon.price * coeff, 0);
 
 	useEffect(() => {
 		setFilteredAddons(
@@ -25,8 +28,6 @@ const Summary = () => {
 	const onSubmit = async () => handleConfirm();
 
 	if (finish) return <ThankYou />;
-
-	const totalPrice = data?.plan?.price + filteredAddons.reduce((acc, addon) => acc + addon.price, 0);
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col md:justify-center gap-4 md:gap-2">
@@ -51,9 +52,7 @@ const Summary = () => {
 							)}
 						>
 							<div className="flex flex-col justify-center items-start">
-								<span className="">{`${data?.plan?.name} (${
-									data?.period ? "Yearly" : "Monthly"
-								})`}</span>
+								<span>{`${data?.plan?.name} (${data?.period ? "Yearly" : "Monthly"})`}</span>
 								<button
 									onClick={() => {
 										setActiveStep(1);
@@ -64,20 +63,24 @@ const Summary = () => {
 									Change
 								</button>
 							</div>
-							<span className="text-xl">{`$${data?.plan?.price}/mo`}</span>
+							<span className="text-xl">{calculatePrice(data?.plan?.price, coeff, data?.period)}</span>
 						</div>
 						<div className="flex flex-col gap-4 text-neutral-cool-gray pt-4">
 							{filteredAddons.map(({ name, price }, index) => (
 								<div key={index} className="flex justify-between items-center">
 									<span>{name}</span>
-									<span className="text-primary-marine-blue">{`+$${price}/mo`}</span>
+									<span className="text-primary-marine-blue">
+										{calculatePrice(price, coeff, data?.period)}
+									</span>
 								</div>
 							))}
 						</div>
 					</div>
 					<div className="flex justify-between items-center p-4 rounded-xl bg-primary-light-blue/10">
 						<span className="text-neutral-cool-gray">{`Total (per month)`}</span>
-						<span className="text-2xl font-semibold text-primary-purplish-blue">{`+$${totalPrice}/mo`}</span>
+						<span className="text-2xl font-semibold text-primary-purplish-blue">{`+$${totalPrice}/${
+							data?.period ? "yr" : "mo"
+						}`}</span>
 					</div>
 				</div>
 			</div>

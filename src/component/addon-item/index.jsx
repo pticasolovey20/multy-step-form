@@ -1,9 +1,11 @@
-import { classNames } from "../../utils";
+import { calculatePrice, classNames } from "../../utils";
 
 import * as CheckboxComponent from "@radix-ui/react-checkbox";
 import CheckmarkIcon from "../icons/CheckmarkIcon";
 
-const AddonItem = ({ name, description, price, value, onChange }) => {
+const AddonItem = ({ name, description, price, period, discount, value, onChange }) => {
+	const coeff = period ? 12 - discount.discountPeriod : 1;
+
 	return (
 		<div
 			className={classNames(
@@ -49,7 +51,7 @@ const AddonItem = ({ name, description, price, value, onChange }) => {
 			</div>
 
 			<span className={classNames("text-sm md:text-lg", "text-primary-purplish-blue !leading-none")}>
-				{`+$${price}/mo`}
+				{calculatePrice(price, coeff, period)}
 			</span>
 		</div>
 	);

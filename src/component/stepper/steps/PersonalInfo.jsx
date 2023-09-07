@@ -6,9 +6,26 @@ import Input from "../../ui/input";
 import Headline from "../../headline";
 
 const PersonalInfo = () => {
-	const { handleNextStep, handleSubmit, register, errors } = useOutletContext();
+	const { handleNextStep, handleSubmit, register, errors, setError } = useOutletContext();
 
-	const onSubmit = async (data) => handleNextStep(data);
+	const onSubmit = async (data) => {
+		const { email, phone } = data;
+
+		const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+		const phoneRegex = /^\d{10}$/;
+
+		if (!emailRegex.test(email)) {
+			setError("email", { type: "manual", message: "Valid email is required" });
+			return;
+		}
+
+		if (!phoneRegex.test(phone)) {
+			setError("phone", { type: "manual", message: "Valid phone is required" });
+			return;
+		}
+
+		handleNextStep(data);
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col md:justify-center gap-4 md:gap-2">
@@ -38,7 +55,6 @@ const PersonalInfo = () => {
 					<Input
 						label="Email Address"
 						id="email"
-						type="email"
 						placeholder="e.g. stephenking@lorem.com"
 						register={register}
 						errors={errors?.email}
@@ -47,7 +63,6 @@ const PersonalInfo = () => {
 					<Input
 						label="Phone Number"
 						id="phone"
-						type="tel"
 						placeholder="e.g. + 1 234 567 890"
 						register={register}
 						errors={errors?.phone}

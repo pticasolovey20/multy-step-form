@@ -8,10 +8,10 @@ import Headline from "../../headline";
 import AddonItem from "../../addon-item";
 
 const Addons = () => {
-	const { handlePrevStep, handleNextStep, handleSubmit, control } = useOutletContext();
+	const { handlePrevStep, handleNextStep, handleSubmit, control, data, discount } = useOutletContext();
 
-	const onSubmit = async (data) => {
-		const { onlineService, largerStorage, customizableProfile } = data;
+	const onSubmit = async (newData) => {
+		const { onlineService, largerStorage, customizableProfile } = newData;
 
 		const addons = [
 			{ onlineService: onlineService },
@@ -19,7 +19,7 @@ const Addons = () => {
 			{ customizableProfile: customizableProfile },
 		];
 
-		handleNextStep({ ...data, ...{ addons: addons } });
+		handleNextStep({ ...newData, ...{ addons: addons } });
 	};
 
 	return (
@@ -43,7 +43,13 @@ const Addons = () => {
 							defaultValue={false}
 							control={control}
 							render={({ field: { value, onChange } }) => (
-								<AddonItem {...addon} value={value} onChange={onChange} />
+								<AddonItem
+									{...addon}
+									value={value}
+									onChange={onChange}
+									period={data?.period}
+									discount={discount}
+								/>
 							)}
 						/>
 					))}
