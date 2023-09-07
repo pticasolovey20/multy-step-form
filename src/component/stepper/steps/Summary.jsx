@@ -42,7 +42,7 @@ const Summary = () => {
 			>
 				<Headline mainText="Finishing up" secondaryText="Double-check everything looks OK before confirming." />
 
-				<div className="flex flex-col gap-6 !tracking-tighter">
+				<div className="flex flex-col gap-6 md:pb-16 !tracking-tighter">
 					<div className="flex flex-col p-4 rounded-xl bg-primary-light-blue/10">
 						<div
 							className={classNames(

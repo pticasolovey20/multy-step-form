@@ -3,11 +3,12 @@ import { calculatePrice, classNames } from "../../utils";
 import * as CheckboxComponent from "@radix-ui/react-checkbox";
 import CheckmarkIcon from "../icons/CheckmarkIcon";
 
-const AddonItem = ({ name, description, price, period, discount, value, onChange }) => {
+const AddonItem = ({ name, description, price, index, period, discount, value, onChange }) => {
 	const coeff = period ? 12 - discount.discountPeriod : 1;
 
 	return (
-		<div
+		<label
+			htmlFor={`checkbox-${index}`}
 			className={classNames(
 				"flex items-center justify-between p-3 lg:p-4",
 				"rounded-xl border-2 border-neutral-light-gray cursor-pointer",
@@ -17,6 +18,7 @@ const AddonItem = ({ name, description, price, period, discount, value, onChange
 		>
 			<div className="flex items-center gap-3 lg:gap-4">
 				<CheckboxComponent.Root
+					id={`checkbox-${index}`}
 					checked={value}
 					value={value}
 					onClick={() => onChange(!value)}
@@ -53,7 +55,7 @@ const AddonItem = ({ name, description, price, period, discount, value, onChange
 			<span className={classNames("text-sm md:text-lg", "text-primary-purplish-blue !leading-none")}>
 				{calculatePrice(price, coeff, period)}
 			</span>
-		</div>
+		</label>
 	);
 };
 

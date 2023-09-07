@@ -47,6 +47,7 @@ const Addons = () => {
 									{...addon}
 									value={value}
 									onChange={onChange}
+									index={index}
 									period={data?.period}
 									discount={discount}
 								/>
